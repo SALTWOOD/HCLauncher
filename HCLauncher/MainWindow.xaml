@@ -1,0 +1,30 @@
+﻿<Window x:Name="mainWindow" x:Class="HCLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCLauncher"
+        xmlns:comps="clr-namespace:HCLauncher.Components"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" WindowStyle="None">
+    <Window.DataContext>
+        <comps:ViewModelControl/>
+    </Window.DataContext>
+    
+    <Grid x:Name="grdMainGrid" Height="450" Width="800" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="9*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="1">
+            <Frame x:Name="frmMainPage" NavigationUIVisibility="Hidden" Source="{Binding PageName}"/>
+        </Grid>
+        <StackPanel x:Name="stkTopPanel"/>
+    </Grid>
+</Window>
