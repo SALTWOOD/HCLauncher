@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using HCLauncher.Modules;
+using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -18,8 +20,20 @@ namespace HCLauncher
     {
         public MainWindow()
         {
-            Components.ViewModelControl.PageName = "Pages/MainPage.xaml";
+            Components.ViewModelControl.PageName = "MainPage";
             InitializeComponent();
+        }
+
+        private void mainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            DirectoryInfo info = new DirectoryInfo($"{FolderPath.pathMCFolder}versions");
+            foreach (var dir in info.EnumerateDirectories())
+            {
+                if (File.Exists(TextString.SlashReplace($"{dir.FullName}/{dir.Name}.json")))
+                {
+                    Console.WriteLine(dir.FullName);
+                }
+            }
         }
     }
 }

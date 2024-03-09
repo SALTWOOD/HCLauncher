@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCLauncher"
         xmlns:comps="clr-namespace:HCLauncher.Components"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStyle="None">
+        Title="MainWindow" Height="450" Width="800" WindowStyle="None" Loaded="mainWindow_Loaded">
     <Window.DataContext>
         <comps:ViewModelControl/>
     </Window.DataContext>
