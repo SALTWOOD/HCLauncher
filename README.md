@@ -1,10 +1,6 @@
 # HCLauncher
 <h1 align = "center"><a href="https://www.codefactor.io/repository/github/saltwood/HCLauncher"><img src="https://www.codefactor.io/repository/github/saltwood/HCLauncher/badge" alt="CodeFactor" /></a></h1>
 
-一个简洁、轻量、免安装的新生代Minecraft启动器
-
-**EDIT: HCL 已暂停维护，新项目在 [HCLauncher](https://github.com/SALTWOOD/HCLauncher)**
-
 # 获取 HCL
 
 ## 测试版
@@ -22,9 +18,6 @@
 
 **@JamesNK** - 使用了 Newtonsoft Json 进行 JSON 配置的读写。
 - [GitHub](https://github.com/JamesNK/Newtonsoft.Json)
-
-**@LitJson** - 曾经使用 LitJson 进行 JSON 配置的读写。
-- [GitHub](https://github.com/LitJson/litjson)
 
 **@ookii-dialogs** - 使用了 Ookii.Dialogs.Wpf 进行文件选择、对话框等操作。
 - [GitHub](https://github.com/ookii-dialogs/ookii-dialogs-wpf)
