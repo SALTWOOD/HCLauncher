@@ -1,4 +1,4 @@
-﻿# EMCLauncher
+﻿# HCLauncher
 
 2023-2023 SALTWOOD
 Mozilla Public License Version 2.0

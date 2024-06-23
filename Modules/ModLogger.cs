@@ -6,11 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static EMCL.Constants;
+using static HCL.Constants;
 using System.Threading;
 using System.Windows;
 
-namespace EMCL.Modules
+namespace HCL.Modules
 {
     internal static class ModLogger
     {
@@ -25,7 +25,7 @@ namespace EMCL.Modules
         {
             ModThread.RunThread(() =>
             {
-                string loggerName = $"{ModPath.path}EMCL/Logs/{DateTime.Now.ToString("yy-MM-dd_HH-mm-ss")}.log";
+                string loggerName = $"{ModPath.path}HCL/Logs/{DateTime.Now.ToString("yy-MM-dd_HH-mm-ss")}.log";
                 bool isSuccess = true;
                 try
                 {
@@ -35,7 +35,7 @@ namespace EMCL.Modules
                 {
                     Console.WriteLine(ex);
                     isSuccess = false;
-                    //Hint("可能同时开启了多个 EMCL，程序可能会出现问题！", HintType.Critical)
+                    //Hint("可能同时开启了多个 HCL，程序可能会出现问题！", HintType.Critical)
                     ModLogger.Log(ex, "日志初始化失败（疑似文件占用问题）");
                 }
                 catch (Exception ex)

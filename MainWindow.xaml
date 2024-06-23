@@ -1,8 +1,8 @@
 ﻿<Window
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:my="clr-namespace:EMCL" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="EMCL.MainWindow"
-    Title="EMCLauncher" ResizeMode="NoResize" WindowStyle="None" Background="{x:Null}" WindowStartupLocation="CenterScreen" AllowsTransparency="True" FontFamily="Microsoft YaHei" x:Name="mainWindow" Closed="MainWindow_Closed" Closing="MainWindow_Closing" Loaded="MainWindow_Loaded">
+    xmlns:my="clr-namespace:HCL" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="HCL.MainWindow"
+    Title="HCLauncher" ResizeMode="NoResize" WindowStyle="None" Background="{x:Null}" WindowStartupLocation="CenterScreen" AllowsTransparency="True" FontFamily="Microsoft YaHei" x:Name="mainWindow" Closed="MainWindow_Closed" Closing="MainWindow_Closing" Loaded="MainWindow_Loaded">
     <Grid x:Name="panAllBack" Width="760" Height="435" UseLayoutRounding="True" RenderTransformOrigin="0.5,0.5">
         <Border Width="740" Height="415">
             <Border Width="740.001" Height="415.001" UseLayoutRounding="False">
@@ -33,7 +33,7 @@
                             <Image Height="40" HorizontalAlignment="Right" VerticalAlignment="Top" Width="35" Opacity="0.5" x:Name="btnExit" Margin="0,0,5,0" Source="Images/btnExit.png" UseLayoutRounding="True" MouseLeftButtonDown="btnExit_MouseLeftButtonDown" />
                             <Image Height="40" HorizontalAlignment="Right" Margin="0,0,40,0" VerticalAlignment="Top" Width="35" Opacity="0.5" x:Name="btnMinimize" Source="Images/btnMinimize.png" UseLayoutRounding="True" MouseLeftButtonDown="btnMinimize_MouseLeftButtonDown" />
                             <Label x:Name="labTopVer" VerticalAlignment="Bottom" Foreground="White" Opacity="0.233" HorizontalAlignment="Right" Padding="7,7,10,7" UseLayoutRounding="True" Background="#016C6C6C" />
-                            <Label x:Name="lblTitle" Content="EMCL" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#A5FFFFFF" FontSize="17" Padding="0" IsHitTestVisible="False" Margin="40,0,0,0"/>
+                            <Label x:Name="lblTitle" Content="HCL" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#A5FFFFFF" FontSize="17" Padding="0" IsHitTestVisible="False" Margin="40,0,0,0"/>
                         </Grid>
                         <StackPanel Grid.Row="2" HorizontalAlignment="Left" x:Name="panHint" VerticalAlignment="Bottom" IsHitTestVisible="False"/>
                         <Button Grid.Row="2" HorizontalAlignment="Left" Margin="100,30,0,0" x:Name="btnEvent" VerticalAlignment="Top" Command="MediaCommands.Play" Visibility="Collapsed" />
@@ -42,8 +42,9 @@
                         <Label x:Name="lblJavaVer" Content="" HorizontalAlignment="Left" Margin="549,352,0,0" Grid.Row="2" VerticalAlignment="Top" Width="160"/>
                         <Button x:Name="btnJavaSearch" Content="搜索 Java" HorizontalAlignment="Left" Margin="135,345,0,0" Grid.Row="2" VerticalAlignment="Top" Height="33" Width="95" Click="btnJavaSearch_Click"/>
                         <Button x:Name="btnChooseJava" Content="手动选择" HorizontalAlignment="Left" Margin="235,345,0,0" Grid.Row="2" VerticalAlignment="Top" Height="33" Width="95" Click="btnChooseJava_Click"/>
-                        <Button x:Name="btnDownloadWindow" Content="打开下载页面" HorizontalAlignment="Left" Margin="335,346,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="112" Click="btnDownloadWindow_Click"/>
                         <Button x:Name="btnSettings" Content="设置页面" HorizontalAlignment="Left" Margin="9,299,0,0" Grid.Row="2" VerticalAlignment="Top" Height="41" Width="121" Click="btnSettings_Click"/>
+                        <ListBox x:Name="lstVersions" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="235,45,0,95"/>
+                        <Button x:Name="btnFetchVersionList" Content="刷新" HorizontalAlignment="Left" Margin="688,328,0,0" Grid.Row="2" VerticalAlignment="Top" Width="42" Click="btnFetchVersionList_Click"/>
                     </Grid>
                     <Grid Grid.Row="2" x:Name="panDrag" IsHitTestVisible="False" Background="#75000000" Opacity="0" d:IsHidden="True">
                         <Label Content="拖拽想要自动安装的文件/文件夹到这里" x:Name="labDrag" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="25" FontWeight="Bold" Margin="0,0,0,24" />

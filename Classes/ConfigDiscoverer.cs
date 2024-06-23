@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EMCL.Classes
+namespace HCL.Classes
 {
     public static class ConfigDiscoverer
     {

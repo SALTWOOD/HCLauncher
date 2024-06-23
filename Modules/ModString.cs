@@ -1,4 +1,4 @@
-﻿using EMCL;
+﻿using HCL;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static System.Windows.Forms.Design.AxImporter;
 
-namespace EMCL.Modules
+namespace HCL.Modules
 {
     internal static class ModString
     {
@@ -34,7 +34,7 @@ namespace EMCL.Modules
         //搜索Java时代替if判断
         public static bool ReturnIfSus(bool isFullSearch, DirectoryInfo folder, string searchEntry)
         {
-            return isFullSearch || (folder.Parent!.Name == "users") || ModString.ContainsSuspiciousWords(searchEntry.ToLower()) ||
+            return isFullSearch || (folder.Parent!.Name == "users") || Constants.searchWords.Any(w => searchEntry.Contains(w)) ||
                 searchEntry == "bin";
         }
 
@@ -54,7 +54,7 @@ namespace EMCL.Modules
         //路径搜索检索关键词
         public static bool ContainsSuspiciousWords(string s)
         {
-            foreach (string i in Constants.suspiciousWords)
+            foreach (string i in Constants.searchWords)
             {
                 if (s.Contains(i)) { return true; }
             }

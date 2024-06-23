@@ -5,16 +5,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static EMCL.Constants;
+using static HCL.Constants;
 
-namespace EMCL.Modules
+namespace HCL.Modules
 {
     public static class ModConfig
     {
         #region 配置读取
         public static void WriteConfig(Config config)
         {
-            StreamWriter sw = new StreamWriter($"{ModPath.path}EMCL/settings.json");
+            StreamWriter sw = new StreamWriter($"{ModPath.path}HCL/settings.json");
             sw.Write(JsonConvert.SerializeObject(config));
             sw.Close();
         }
@@ -22,7 +22,7 @@ namespace EMCL.Modules
         public static Config ReadConfig()
         {
             Config result;
-            using (StreamReader sr = new StreamReader($"{ModPath.path}EMCL/settings.json"))
+            using (StreamReader sr = new StreamReader($"{ModPath.path}HCL/settings.json"))
             {
                 result = JsonConvert.DeserializeObject<Config>(sr.ReadToEnd())!;
             }

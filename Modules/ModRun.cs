@@ -7,9 +7,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using static EMCL.Modules.ModLogger;
+using static HCL.Modules.ModLogger;
 
-namespace EMCL.Modules
+namespace HCL.Modules
 {
     public static class ModRun
     {

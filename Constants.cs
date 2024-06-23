@@ -9,14 +9,14 @@ using System.Xml.Linq;
 using System.Security.Cryptography;
 using Newtonsoft.Json;
 using System.IO;
-using EMCL.Modules;
+using HCL.Modules;
 
-namespace EMCL
+namespace HCL
 {
     public static class Constants
     {
 
-        public static List<string> suspiciousWords = new List<string>()
+        public static readonly List<string> searchWords = new List<string>()
         {
             "java","jdk","env",
             "环境","run","软件",
@@ -45,10 +45,10 @@ namespace EMCL
 
         public static List<string> folders = new List<string>()
         {
-            $"{ModPath.path}EMCL/",
-            $"{ModPath.path}EMCL/Logs/",
-            $"{ModPath.path}EMCL/Temp/",
-            $"{ModPath.path}EMCL/CrashReports/",
+            $"{ModPath.path}HCL/",
+            $"{ModPath.path}HCL/Logs/",
+            $"{ModPath.path}HCL/Temp/",
+            $"{ModPath.path}HCL/CrashReports/",
             $"{ModPath.path}.minecraft/",
             $"{ModPath.path}.minecraft/libraries",
             $"{ModPath.path}.minecraft/assets",

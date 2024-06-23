@@ -6,10 +6,10 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using EMCL.Modules;
+using HCL.Modules;
 using Newtonsoft.Json;
 
-namespace EMCL.Modules
+namespace HCL.Modules
 {
     public class Language
     {

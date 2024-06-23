@@ -12,8 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using EMCL.Modules;
-using static EMCL.Constants;
+using HCL.Modules;
+using static HCL.Constants;
 using System.Diagnostics;
 using System.Threading;
 using System.IO;
@@ -21,12 +21,14 @@ using Ookii.Dialogs.Wpf;
 using Microsoft.Win32;
 using Microsoft.VisualBasic.Devices;
 using System.Windows.Threading;
-using EMCL.Pages;
+using HCL.Pages;
 using NAudio;
-using EMCL;
+using HCL;
 using Newtonsoft.Json;
+using static HCL.Modules.MinecraftJson;
+using System.Net.Http;
 
-namespace EMCL
+namespace HCL
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -41,6 +43,77 @@ namespace EMCL
         public ModSerial.FingerPrint fingerprint = new ModSerial.FingerPrint();
         public List<Window> windows = new List<Window>();
 
+        MinecraftVersionList? versionList = null;
+
+        public void FetchVersionList()
+        {
+            InitializeComponent();
+            DownloadVersionList();
+            UpdateVersionList();
+        }
+
+        public async void DownloadVersionList()
+        {
+            versionList = await ModDownload.GetMinecraftVersionList();
+            MessageBox.Show(JsonConvert.SerializeObject(versionList));
+        }
+
+        public string GetWebsiteCode(string URL)
+        {
+            string result = null!;
+            HttpClient request = null!;
+            HttpResponseMessage response = null!;
+            StreamReader sr = null!;
+            result = "";
+            try
+            {
+                request = new HttpClient();
+                response = request.GetAsync(URL).Result;
+                result = response.Content.ReadAsStringAsync().Result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                if (!(sr == null))
+                    sr.Dispose();
+                if (!(response == null))
+                    response.Dispose();
+                if (!(request == null))
+                    request.Dispose();
+            }
+            return result;
+        }
+
+
+
+        public void UpdateVersionList()
+        {
+            if (versionList != null)
+            {
+                for (int i = 0; i < versionList.versions.Count; i++)
+                {
+                    MinecraftVersionInfo current = versionList.versions[i];
+                    WinComps.VersionItem versionItem = new WinComps.VersionItem();
+                    versionItem.lblVersionName.Content = current.id;
+                    if (current.type == "release")
+                    {
+                        BitmapImage imgSource = new BitmapImage(new Uri("/Images/block_grass.png", UriKind.Relative));
+                        versionItem.imgVersionType.Source = imgSource;
+                    }
+                    else
+                    {
+                        BitmapImage imgSource = new BitmapImage(new Uri("/Images/block_command_block.png", UriKind.Relative));
+                        versionItem.imgVersionType.Source = imgSource;
+                    }
+                    versionItem.versionJson = current;
+                    lstVersions.Items.Add(versionItem);
+                }
+            }
+        }
+
         #region 异常处理与线程运行
         public void HandleException(Exception ex)
         {
@@ -48,7 +121,7 @@ namespace EMCL
             //Console.WriteLine($"{ex.GetType()}\r\n{ex.Message}\r\n{ex.StackTrace}\r\n\r\n现在反馈问题吗？如果不反馈，这个问题可能永远无法解决！");
             if (MessageBox.Show($"{ex.GetType()}\r\n{ex.Message}\r\n{ex.StackTrace}\r\n\r\n现在反馈问题吗？如果不反馈，这个问题可能永远无法解决！", "无法处理的异常", MessageBoxButton.YesNoCancel, MessageBoxImage.Error) == MessageBoxResult.Yes)
             {
-                Process.Start("https://github.com/SALTWOOD/EMCLauncher/issues/new/choose");
+                Process.Start("https://github.com/SALTWOOD/HCLauncher/issues/new/choose");
             }
         }
 
@@ -62,7 +135,7 @@ namespace EMCL
             //Console.WriteLine($"{ex.GetType()}\r\n{ex.Message}\r\n{ex.StackTrace}\r\n\r\n现在反馈问题吗？如果不反馈，这个问题可能永远无法解决！");
             if (MessageBox.Show($"{stringBuilder}警告: 通常情况下，在处理一个异常的过程中出现另一个异常属于一个极大的 Bug！\r\n现在反馈问题吗？如果不反馈，这个问题可能永远无法解决！", "多个无法处理的异常", MessageBoxButton.YesNoCancel, MessageBoxImage.Error) == MessageBoxResult.Yes)
             {
-                Process.Start("https://github.com/SALTWOOD/EMCLauncher/issues/new/choose");
+                Process.Start("https://github.com/SALTWOOD/HCLauncher/issues/new/choose");
             }
         }
 
@@ -158,7 +231,7 @@ namespace EMCL
                 mc.Start();//MC，启动！
                 ModLogger.Log($"[Main] Minecraft 启动成功！");
                 mc.WaitForExit(-1);
-                string file = $"{ModPath.path}EMCL/CrashReports/crash-{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")}.log";
+                string file = $"{ModPath.path}HCL/CrashReports/crash-{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")}.log";
                 //if (mc.ExitCode != 0)
                 {
                     MessageBox.Show($"Minecraft 异常退出！\r\n" +
@@ -232,9 +305,9 @@ namespace EMCL
                     break;
                 }
             }
-            if (File.Exists($"{ModPath.path}EMCL/settings.json"))
+            if (File.Exists($"{ModPath.path}HCL/settings.json"))
             {
-                ModLogger.Log($"[Config] 正在加载配置文件 {ModPath.path}EMCL/settings.json");
+                ModLogger.Log($"[Config] 正在加载配置文件 {ModPath.path}HCL/settings.json");
                 ModLogger.Log($"[Java] 开始读取 Java 缓存");
                 config = ModConfig.ReadConfig();
                 if (DateTimeOffset.Now.AddDays(-7).ToUnixTimeSeconds() > config.tempTime && !config.forceDisableJavaAutoSearch)
@@ -276,7 +349,7 @@ namespace EMCL
             {
                 ModFile.RemoveOutdatedLogs(days: config.logFileAutomaticCleanupInterval);
             }
-            ModFile.RemoveOutdatedLogs("*.log", "EMCL/Temp", 3, 10);
+            ModFile.RemoveOutdatedLogs("*.log", "HCL/Temp", 3, 10);
             LanguageHelper.Initialize(config.language);
         }
         #endregion
@@ -426,19 +499,12 @@ namespace EMCL
         {
             this.DragMove();
         }
-
-        private void btnDownloadWindow_Click(object sender, RoutedEventArgs e)
-        {
-            Window newWindow = new PageDownload();
-            windows.Add(newWindow);
-            newWindow.Show();
-        }
         #endregion
 
         #region 程序退出
         public void AppExit()
         {
-            ModLogger.Log($"[Config] 正在保存配置文件至 {ModPath.path}EMCL/settings.json", ModLogger.LogLevel.Normal);
+            ModLogger.Log($"[Config] 正在保存配置文件至 {ModPath.path}HCL/settings.json", ModLogger.LogLevel.Normal);
             ModConfig.WriteConfig(config);
             ModLogger.Log("[Main] 准备开始关闭其他线程", ModLogger.LogLevel.Normal);
             ModRun.isExited = true;
@@ -460,6 +526,11 @@ namespace EMCL
             Window newWindow = new Pages.Settings();
             windows.Add(newWindow);
             newWindow.Show();
+        }
+
+        private void btnFetchVersionList_Click(object sender, RoutedEventArgs e)
+        {
+            FetchVersionList();
         }
     }
 }

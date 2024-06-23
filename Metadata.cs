@@ -5,19 +5,21 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EMCL
+namespace HCL
 {
     public static class Metadata
     {
-        public static string name = "EMCL";
-        public static string fullName = "Easy-Minecraft C# Launcher";
-        public static string version = "0.0.5";
+        public readonly static string name = "HCL";
+        public readonly static string fullName = "Hydrogen Craft Launcher";
+        public readonly static string version = "1.0.0";
 
-        public static string title = $"{name} v{version}";
-        public static string fullTitle = $"{fullName} (version {version})";
+        public readonly static string userAgent = $"{fullName}/{version}";
 
-        public static bool DEBUG = false;
+        public readonly static string title = $"{name} v{version}";
+        public readonly static string fullTitle = $"{fullName} (version {version})";
 
-        public static int protocol = 0x00_00_00_03;
+        public readonly static bool DEBUG = false;
+
+        public readonly static int protocol = 0x00_00_00_05;
     }
 }

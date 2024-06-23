@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static EMCL.Constants;
-using static EMCL.Modules.ModLogger;
+using static HCL.Constants;
+using static HCL.Modules.ModLogger;
 using System.Threading;
 
-namespace EMCL.Modules
+namespace HCL.Modules
 {
     internal static class ModThread
     {

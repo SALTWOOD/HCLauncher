@@ -11,13 +11,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using EMCL;
-using EMCL.Modules;
-using EMCL.Classes;
-using EMCL.WinComps;
+using HCL;
+using HCL.Modules;
+using HCL.Classes;
+using HCL.WinComps;
 using Xceed.Wpf.Toolkit.PropertyGrid;
 
-namespace EMCL.Pages
+namespace HCL.Pages
 {
     /// <summary>
     /// Window1.xaml 的交互逻辑

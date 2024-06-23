@@ -1,9 +1,9 @@
-﻿<Window x:Class="EMCL.WinComps.MsgBox"
+﻿<Window x:Class="HCL.WinComps.MsgBox"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignHeight="398" d:DesignWidth="738" xmlns:local="clr-namespace:EMCL.WinComps" ResizeMode="NoResize" WindowStyle="None" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" AllowsTransparency="True" Background="#00000000">
+             mc:Ignorable="d" d:DesignHeight="398" d:DesignWidth="738" xmlns:local="clr-namespace:HCL.WinComps" ResizeMode="NoResize" WindowStyle="None" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" AllowsTransparency="True" Background="#00000000">
 
     <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="panMain" MaxWidth="{Binding RelativeSource={RelativeSource Self}, Path=Parent.Width}" UseLayoutRounding="True" Background="#00FCFCFC">
         <StackPanel.Effect>

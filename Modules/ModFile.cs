@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace EMCL.Modules
+namespace HCL.Modules
 {
     //public static byte[] GetResources(string ResourceName)
     //{
@@ -22,7 +22,7 @@ namespace EMCL.Modules
         public static string GetInternalFile(string path)
         {
             Assembly _assembly = Assembly.GetExecutingAssembly();
-            string resourceName = $"EMCL.{path.Replace('/','.')}";
+            string resourceName = $"HCL.{path.Replace('/','.')}";
             Stream? stream = _assembly.GetManifestResourceStream(resourceName);
             if (stream != null)
             {
@@ -54,7 +54,7 @@ namespace EMCL.Modules
             return assembly;
         }
 
-        public static void RemoveOutdatedLogs(string fillter = "*.log", string location = "EMCL/Logs", int days = 7, int maxCount = 15)
+        public static void RemoveOutdatedLogs(string fillter = "*.log", string location = "HCL/Logs", int days = 7, int maxCount = 15)
         {
             int count = 0;
             foreach (string dir in Directory.GetDirectories($"{ModPath.path}{location}"))

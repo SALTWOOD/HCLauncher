@@ -3,11 +3,11 @@ using log4net.Appender;
 using System;
 using System.IO;
 
-namespace EMCL
+namespace HCL
 {
     public class Logger
     {
-        private static string filepath = AppDomain.CurrentDomain.BaseDirectory + "/EMCL/Logs/";
+        private static string filepath = AppDomain.CurrentDomain.BaseDirectory + "/HCL/Logs/";
         private static readonly log4net.ILog logComm = log4net.LogManager.GetLogger(nameof(Logger));
         private static readonly string time;
 
@@ -48,7 +48,7 @@ namespace EMCL
                     {
                         if (!targetApder.File.Contains(filename))
                         {
-                            targetApder.File = "EMCL/Logs/" + filename;
+                            targetApder.File = "HCL/Logs/" + filename;
                             targetApder.ActivateOptions();
                         }
                     }

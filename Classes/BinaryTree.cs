@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EMCL.Classes
+namespace HCL.Classes
 {
     public class Tree<T> : IEnumerable<T> where T : IComparable<T>
     {

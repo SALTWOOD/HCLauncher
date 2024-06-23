@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EMCL.WinComps
+namespace HCL.WinComps
 {
     /// <summary>
     /// Button.xaml 的交互逻辑

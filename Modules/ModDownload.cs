@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using NAudio.SoundFont;
 using Newtonsoft.Json;
-using static EMCL.Modules.MinecraftJson;
+using static HCL.Modules.MinecraftJson;
 
-namespace EMCL.Modules
+namespace HCL.Modules
 {
     public static class ModDownload
     {
@@ -85,7 +85,7 @@ namespace EMCL.Modules
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.UserAgent.Clear();
-            client.DefaultRequestHeaders.UserAgent.ParseAdd("EMCL/dt-0.0.4 (Windows NT; Win64; x64) WPF_Application System.Net.Http.HttpClient");
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("HCL/dt-0.0.4 (Windows NT; Win64; x64) WPF_Application System.Net.Http.HttpClient");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.ParseAdd("*/*");
             client.DefaultRequestHeaders.AcceptEncoding.Clear();
