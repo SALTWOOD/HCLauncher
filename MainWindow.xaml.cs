@@ -27,6 +27,7 @@ using HCL;
 using Newtonsoft.Json;
 using static HCL.Modules.MinecraftJson;
 using System.Net.Http;
+using HCL.WinComps;
 
 namespace HCL
 {
@@ -277,9 +278,7 @@ namespace HCL
             this.Title = Metadata.title;
             this.lblTitle.Content = Metadata.title;
             ModLogger.Log("[Main] 主程序组件成功加载！");
-            _mainWindow = (Application.Current.Windows
-                .Cast<Window>()
-                .FirstOrDefault(window => window is MainWindow) as MainWindow)!;
+            _mainWindow = this;
         }
 
         private void MainWindow_Loaded(object sender, EventArgs e)
@@ -531,6 +530,15 @@ namespace HCL
         private void btnFetchVersionList_Click(object sender, RoutedEventArgs e)
         {
             FetchVersionList();
+        }
+
+        private void lstVersions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            VersionItem item = (this.lstVersions.Items[this.lstVersions.SelectedIndex] as VersionItem)!;
+            if (item != null)
+            {
+                item.Download(sender);
+            }
         }
     }
 }
